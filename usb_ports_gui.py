@@ -33,12 +33,15 @@ class usb_ports_gui:
         usb_ports_gui.gui(self,list_)
     def gui(self,list_):
         r = tk.Tk()
-        r.geometry('600x300')
+        r.geometry('700x300')
         r.title('List of usb ports')
+        text_ = 'Total usb devices count   :'+str(len(usb_ports))
+        tk.Label(r, text=text_, font=("Aerial Bold", 20)).pack()
         for i in list_:
-            print(i)
-            tk.Label(r, text=i[0]+str(i[1]), font=("Aerial Bold", 20)).pack()
-
+            split_ = i[0].split(" ")
+            text_ = 'id  :'+split_[0]+',  usb device:   '+split_[2]+',  count   :'+str(i[1])
+            print(text_)
+            tk.Label(r, text=text_, font=("Aerial Bold", 20)).pack()
         r.mainloop()
         usb_ports_gui.usb_ports(self)
 
