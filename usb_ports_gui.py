@@ -22,11 +22,13 @@ class usb_ports_gui:
                 concat = concat + list_[i] + " "
             usb_ports.append([list_[0], concat])
         usb_list = []
-        usb_ports = [['COM1', 'Communications Port ']]
-        for i in usb_ports:
-            usb_list.append([i[0] + "  " + i[1], i[1].split(" ")[0]])
-        print(usb_list)
+        try:
+            for i in usb_ports:
+                usb_list.append([i[0] + "  " + i[1], i[1].split(" ")[0]])
+        except Exception as e:
+            print(e)
         usb_ports_gui.usb_port_count(self,usb_list)
+
     def linux_usb_ports(self):
         global usb_ports
         usb_ports = []
@@ -38,7 +40,6 @@ class usb_ports_gui:
                 concat = concat+list_[i]+" "
             string = list_[0][slice(5, len(list_[0]))] + "  " + concat
             usb_ports.append([string,string.split(" ")[2]])
-        print(usb_ports)
         usb_ports_gui.usb_port_count(self,usb_ports)
 
     def usb_port_count(self,usb_ports):
@@ -56,7 +57,6 @@ class usb_ports_gui:
             if count != 0:
                 list_.append([usb_ports[i][0],count])
             count = 0
-        print(list_)
         usb_ports_gui.gui(self,list_)
 
     def gui(self,list_):
